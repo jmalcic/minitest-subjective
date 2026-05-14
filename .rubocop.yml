@@ -1,0 +1,7 @@
+plugins:
+  - rubocop-performance
+  - rubocop-minitest
+  - rubocop-rake
+
+AllCops:
+  NewCops: enable
