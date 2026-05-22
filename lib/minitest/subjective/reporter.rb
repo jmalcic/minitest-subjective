@@ -16,6 +16,7 @@ module Minitest
 
       def report
         results.each do |subject_name, result|
+          io.puts
           io.puts "Coverage for #{subject_name}:"
           io.puts coverage_headline_for(result)
           io.puts result.to_s unless result.covered?
