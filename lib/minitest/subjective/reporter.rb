@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'minitest/subjective/case_inquirer'
-
 module Minitest
   module Subjective
     class Reporter < Minitest::Reporter # :nodoc:

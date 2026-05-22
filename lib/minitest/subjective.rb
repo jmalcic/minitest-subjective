@@ -1,11 +1,16 @@
 # frozen_string_literal: true
 
-require_relative 'subjective/version'
 require 'coverage'
 require 'forwardable'
 require 'minitest'
+
+require 'minitest/subjective/version'
+require 'minitest/subjective/case_inquirer'
 require 'minitest/subjective/file_result'
-require 'minitest/subjective_plugin'
+require 'minitest/subjective/formatter'
+require 'minitest/subjective/reporter'
+require 'minitest/subjective/result_extensions'
+require 'minitest/subjective/test_extensions'
 
 module Minitest # :nodoc:
   # = \Subjective
@@ -65,6 +70,6 @@ module Minitest # :nodoc:
       end
     end
   end
-
-  load :subjective if respond_to?(:load)
 end
+
+Minitest.load :subjective if Minitest.respond_to?(:load) && !Minitest.respond_to?(:plugin_subjective_init)

@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require 'minitest/subjective/reporter'
-require 'minitest/subjective/result_extensions'
-require 'minitest/subjective/test_extensions'
-
 module Minitest # :nodoc:
   class << self
     private
@@ -27,6 +23,8 @@ module Minitest # :nodoc:
 
   def self.plugin_subjective_init(options)
     return unless options[:subjective] || ENV['MINITEST_SUBJECTIVE']
+
+    require 'minitest/subjective'
 
     add_zeitwerk_hooks
     Subjective.start_coverage

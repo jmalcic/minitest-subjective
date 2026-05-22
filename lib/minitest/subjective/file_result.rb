@@ -3,7 +3,6 @@
 require 'minitest/subjective/file_result/branch_statistics'
 require 'minitest/subjective/file_result/line_statistics'
 require 'minitest/subjective/file_result/method_statistics'
-require 'minitest/subjective/formatter'
 
 module Minitest
   module Subjective
