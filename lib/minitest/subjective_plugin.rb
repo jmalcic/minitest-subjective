@@ -32,6 +32,9 @@ module Minitest # :nodoc:
     Subjective.start_coverage
     Subjective::ResultExtensions.prepend_target
     Subjective::TestExtensions.prepend_target
+    Runnable.runnables
+            .reject { |runnable| [Minitest::Test, Minitest::Spec].include?(runnable) }
+            .each { |runnable| Subjective.record_load_for(runnable) }
     reporter << Subjective::Reporter.new
   end
 end

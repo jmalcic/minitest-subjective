@@ -70,7 +70,9 @@ module Minitest
     def with_stubs(&block)
       Subjective::TestExtensions.stub :prepend_target, nil do
         Subjective::ResultExtensions.stub :prepend_target, nil do
-          Subjective.stub :start_coverage, true, &block
+          Subjective.stub :start_coverage, nil do
+            Subjective.stub :record_load_for, true, &block
+          end
         end
       end
     end
