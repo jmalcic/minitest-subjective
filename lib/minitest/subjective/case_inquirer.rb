@@ -14,9 +14,9 @@ module Minitest
 
       def subject_name
         return class_name unless test?
-        return [class_name_nesting, demodulized_class_name.delete_suffix('Test')].join('::') if rails_test?
+        return [*class_name_nesting, demodulized_class_name.delete_suffix('Test')].join('::') if rails_test?
 
-        [class_name_nesting, demodulized_class_name.delete_prefix('Test')].join('::')
+        [*class_name_nesting, demodulized_class_name.delete_prefix('Test')].join('::')
       end
 
       def test? = rails_test? || minitest_test?
@@ -41,7 +41,7 @@ module Minitest
       def load_subject = safe_constantize(subject_name)
 
       def class_name_nesting
-        class_name.split('::')[0..-2].join('::')
+        class_name.split('::')[0..-2].join('::').then { |nesting| nesting unless nesting.empty? }
       end
 
       def demodulized_class_name

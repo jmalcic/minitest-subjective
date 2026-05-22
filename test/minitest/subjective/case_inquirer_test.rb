@@ -6,6 +6,7 @@ module Minitest
   module Subjective
     class CaseInquirerTest < Minitest::Test
       Fake = Struct.new
+      ::UnnestedFake = Struct.new
 
       module ::ActiveSupport
         class TestCase < Minitest::Test
@@ -27,6 +28,9 @@ module Minitest
       end
 
       class FakeActionDispatchTest < ::ActionDispatch::IntegrationTest
+      end
+
+      class ::UnnestedFakeTest < Minitest::Test
       end
 
       setup do
@@ -51,6 +55,10 @@ module Minitest
                      CaseInquirer.new('Minitest::Subjective::CaseInquirerTest::FakeActiveSupportTest').subject_name
         assert_equal 'Minitest::Subjective::CaseInquirerTest::Fake',
                      CaseInquirer.new('Minitest::Subjective::CaseInquirerTest::Fake').subject_name
+      end
+
+      test 'returns unnested subject name' do
+        assert_equal 'UnnestedFake', CaseInquirer.new('UnnestedFakeTest').subject_name
       end
 
       test 'returns true if a test' do
