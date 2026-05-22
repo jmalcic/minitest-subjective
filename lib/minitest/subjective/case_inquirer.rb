@@ -26,7 +26,7 @@ module Minitest
       end
 
       def rails_test?
-        demodulized_class_name.end_with?('Test') && defined?(::ActiveSupport) && klass < ActiveSupport::TestCase
+        demodulized_class_name.end_with?('Test') && klass < Minitest::Test
       end
 
       def integration_test? = rails_test? && defined?(::ActionDispatch) && klass < ActionDispatch::IntegrationTest

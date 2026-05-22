@@ -20,6 +20,9 @@ module Minitest
       class TestFake < Minitest::Test
       end
 
+      class FakeTest < Minitest::Test
+      end
+
       class FakeActiveSupportTest < ::ActiveSupport::TestCase
       end
 
@@ -56,7 +59,8 @@ module Minitest
         assert_predicate CaseInquirer.new(FakeActiveSupportTest), :test?
       end
 
-      test 'returns true if a Rails test' do
+      test 'returns true if a Rails-style test' do
+        assert_predicate CaseInquirer.new(FakeTest), :rails_test?
         assert_predicate CaseInquirer.new(FakeActiveSupportTest), :rails_test?
         refute_predicate @case_inquirer, :rails_test?
       end
