@@ -9,6 +9,8 @@ module Minitest # :nodoc:
 
       ::Zeitwerk::Registry.loaders.each do |loader|
         loader.on_load do |cpath, _value, abspath|
+          next if Gem.path.any? { |path| abspath.start_with?("#{path}/") }
+
           Subjective.record_autoload_for(cpath, abspath)
         end
       end
