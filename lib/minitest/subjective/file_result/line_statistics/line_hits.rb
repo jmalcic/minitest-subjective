@@ -6,7 +6,7 @@ module Minitest
       class LineStatistics
         LineHits = Struct.new(:line, :hits, :branches) do
           def self.from_pair(line, hits, branches: nil)
-            new(line:, hits:, branches:)
+            new(line:, hits:, branches: branches&.filter { |range| range.cover?(line) })
           end
 
           def +(other)

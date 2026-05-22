@@ -10,7 +10,7 @@ module Minitest
           setup do
             @line_hits = LineHits.new(1, 2, nil)
             @missed_line_hits = LineHits.new(2, 0, nil)
-            @missed_branch_hits = BranchStatistics.from_hash([:if, 1, 1, 2, 0] => [[[:then, 1, 1, 2, 0], 0]])
+            @missed_branch_hits = BranchStatistics.from_hash([:if, 0, 2, 3, 2] => [[[:then, 0, 2, 0, 2], 0]])
             @missed_branch_line_hits = LineHits.new(2, 1, @missed_branch_hits)
           end
 
