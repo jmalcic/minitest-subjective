@@ -24,13 +24,13 @@ module Minitest
         def +(other)
           return self unless other
 
-          self.class.new(method_hits.zip(other.method_hits).collect { |current, new| current + new })
+          self.class.new(method_hits.collect { _1 + other.find_by(klass: _1.klass, name: _1.name, range: _1.range) })
         end
 
         def -(other)
           return self unless other
 
-          self.class.new(method_hits.zip(other.method_hits).collect { |current, new| current - new })
+          self.class.new(method_hits.collect { _1 - other.find_by(klass: _1.klass, name: _1.name, range: _1.range) })
         end
 
         def find_by(**options)
