@@ -31,19 +31,28 @@ bundle add minitest-subjective
 
 ## Usage
 
-Simply run your tests with the `--subjective` flag.
+If you use Zeitwerk (e.g. through Rails), loading will happen after coverage is started by the plugin.
+
+If you don't use Zeitwerk and load eagerly, you need to add this to the top of your test helper, before
+requiring your own files. This is because the plugin would otherwise start coverage after files are loaded (too late).
+
+```ruby
+require 'minitest/subjective/setup'
+```
+
+Then simply run your tests with the `--subjective` flag.
 
 ```bash
 minitest --subjective
 ```
 
-Works with Rails too.
+Or when using Rails:
 
 ```bash
 rails t --subjective
 ```
 
-If you can't easily pass the flag, you can set `MINITEST_SUBJECTIVE=1` instead.
+If you can't easily pass the flag, you can set `MINITEST_SUBJECTIVE=1` instead, such as when running directly with Rake.
 
 ## Development
 
